@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selamat Ulang Tahun Mamak Via!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #ff85a2;
+            --secondary-color: #ffd4db;
+            --accent-color: #e75480;
+            --dark-color: #333;
+            --light-color: #fff9fb;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, var(--secondary-color) 0%, var(--light-color) 70%);
+            z-index: -1;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1);
+            animation: pulse 2s infinite;
+        }
+        
+        .birthday-date {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            margin-bottom: 2rem;
+        }
+        
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+        
+        .wish-container {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 3rem;
+            max-width: 800px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+            z-index: 2;
+        }
+        
+        .wish-container:hover {
+            transform: rotateY(5deg) rotateX(5deg);
+        }
+        
+        .wish-container::before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 2px dashed var(--primary-color);
+            border-radius: 20px;
+            z-index: -1;
+            opacity: 0.5;
+        }
+        
+        .wish-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+        
+        .signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            text-align: right;
+            color: var(--accent-color);
+        }
+        
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .countdown-item {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 1rem 1.5rem;
+            text-align: center;
+            min-width: 100px;
+            transition: transform 0.3s;
+        }
+        
+        .countdown-item:hover {
+            transform: translateY(-10px);
+        }
+        
+        .countdown-number {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+        
+        .countdown-label {
+            font-size: 1rem;
+            color: var(--dark-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .paper-plane {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-color: white;
+            clip-path: polygon(0% 0%, 100% 0%, 100% 60%, 50% 100%, 0% 60%);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            opacity: 0.8;
+            z-index: 1;
+            animation: fly 10s linear infinite;
+        }
+        
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background-color: var(--primary-color);
+            opacity: 0;
+            z-index: 10;
+            animation: confetti 5s ease-in infinite;
+        }
+        
+        .heart {
+            position: absolute;
+            pointer-events: none;
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            opacity: 0;
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: auto;
+            padding: 2rem;
+            color: var(--dark-color);
+            font-size: 0.9rem;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes fly {
+            0% {
+                transform: translateX(-100px) translateY(100px) rotateZ(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            70% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(calc(100vw + 100px)) translateY(-100px) rotateZ(360deg);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes confetti {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .countdown {
+                flex-wrap: wrap;
+            }
+            
+            .countdown-item {
+                min-width: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="confetti-container"></div>
+    
+    <div class="container">
+        <header>
+            <h1>Selamat Ulang Tahun Mamak Via!</h1>
+            <div class="birthday-date">15 Agustus 2025</div>
+        </header>
+        
+        <div class="main-content">
+            <div class="wish-container">
+                <p class="wish-text">Mamak Via,</p>
+                <p class="wish-text">Di hari ulang tahun tante, saya ucapkan selamat ulang tahun Semoga panjang umur, sehat selalu, dan setiap mimpi tante menjadi kenyataan.</p>
+                <p class="wish-text">Semoga segala urusanya di beri kemudahan dan di jauhkan dari musibah</p>
+                <p class="wish-text">Selamat Ulang tahun tanteee</p>
+                <div class="signature">Dari Rayhan</div>
+            </div>
+            
+            <div class="countdown">
+                <div class="countdown-item">
+                    <div class="countdown-number" id="Tanggal">15</div>
+                    <div class="countdown-label">Tgl</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="hours">2025</div>
+                    <div class="countdown-label">Thn</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="minutes">07.00</div>
+                    <div class="countdown-label">jam</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="seconds">00</div>
+                    <div class="countdown-label">Dtk</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        Dibuat dengan penuh cinta untuk Mamak Via di hari ulang tahunnya yang spesial
+    </footer>
+    
+    <audio id="bgMusic" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+    
+    <script>
+        // Set target date to August 15, 2025
+        const targetDate = new Date('August 15, 2025 00:00:00').getTime();
+        
+        // Update countdown every second
+        const countdown = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+            
+            // If birthday has arrived
+            if (distance < 0) {
+                clearInterval(countdown);
+                document.getElementById('days').innerHTML = '00';
+                document.getElementById('hours').innerHTML = '00';
+                document.getElementById('minutes').innerHTML = '00';
+                document.getElementById('seconds').innerHTML = '00';
+                celebrateBirthday();
+                return;
+            }
+            
+            // Calculate days, hours, minutes, seconds
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            // Display results
+            document.getElementById('days').innerHTML = days.toString().padStart(2, '0');
+            document.getElementById('hours').innerHTML = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').innerHTML = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').innerHTML = seconds.toString().padStart(2, '0');
+            
+        }, 1000);
+        
+        // Function to celebrate when it's the birthday
+        function celebrateBirthday() {
+            // Play music
+            const music = document.getElementById('bgMusic');
+            music.volume = 0.3;
+            music.play().catch(e => console.log("Auto-play was prevented:", e));
+            
+            // Create paper planes
+            for (let i = 0; i < 15; i++) {
+                createPaperPlane(i);
+            }
+            
+            // Create confetti
+            createConfetti();
+            
+            // Create floating hearts
+            setInterval(createHeart, 500);
+            
+            // Change title animation
+            document.querySelector('h1').style.animation = 'pulse 1s infinite';
+        }
+        
+        // Create a paper plane
+        function createPaperPlane(index) {
+            const plane = document.createElement('div');
+            plane.className = 'paper-plane';
+            
+            // Random position and delay
+            const startDelay = Math.random() * 10;
+            const startY = Math.random() * window.innerHeight;
+            const size = 30 + Math.random() * 20;
+            
+            plane.style.width = `${size}px`;
+            plane.style.height = `${size}px`;
+            plane.style.left = `-100px`;
+            plane.style.top = `${startY}px`;
+            plane.style.animationDelay = `${startDelay}s`;
+            plane.style.animationDuration = `${15 + Math.random() * 10}s`;
+            plane.style.backgroundColor = getRandomPastelColor();
+            
+            document.body.appendChild(plane);
+        }
+        
+        // Create confetti
+        function createConfetti() {
+            const container = document.getElementById('confetti-container');
+            
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                
+                // Random properties
+                const left = Math.random() * window.innerWidth;
+                const size = 5 + Math.random() * 10;
+                const color = getRandomPastelColor();
+                const delay = Math.random() * 5;
+                const duration = 3 + Math.random() * 7;
+                
+                confetti.style.left = `${left}px`;
+                confetti.style.width = `${size}px`;
+                confetti.style.height = `${size}px`;
+                confetti.style.backgroundColor = color;
+                confetti.style.animationDelay = `${delay}s`;
+                confetti.style.animationDuration = `${duration}s`;
+                
+                container.appendChild(confetti);
+            }
+        }
+        
+        // Create floating hearts
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '❤️';
+            
+            // Random properties
+            const left = Math.random() * window.innerWidth;
+            const size = 0.5 + Math.random() * 2;
+            const delay = Math.random() * 2;
+            
+            heart.style.left = `${left}px`;
+            heart.style.bottom = '-50px';
+            heart.style.fontSize = `${size}rem`;
+            heart.style.animationDelay = `${delay}s`;
+            
+            document.body.appendChild(heart);
+            
+            // Remove heart after animation
+            setTimeout(() => {
+                heart.remove();
+            }, 4000);
+        }
+        
+        // Generate random pastel color
+        function getRandomPastelColor() {
+            const hue = Math.floor(Math.random() * 360);
+            return `hsl(${hue}, 100%, 85%)`;
+        }
+        
+        // Check if it's already August 15, 2025
+        const currentDate = new Date();
+        if (currentDate.getMonth() === 7 && currentDate.getDate() === 15 && currentDate.getFullYear() === 2025) {
+            celebrateBirthday();
+        }
+        
+        // Create some paper planes immediately
+        for (let i = 0; i < 5; i++) {
+            setTimeout(() => createPaperPlane(i), i * 1000);
+        }
+    </script>
+</body>
+</html>
+
